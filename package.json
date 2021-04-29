@@ -8,7 +8,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "ccxt": "^1.48.52",
     "core-js": "^3.6.5",
+    "dayjs": "^1.10.4",
+    "decimal.js": "^10.2.1",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
