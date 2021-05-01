@@ -1,5 +1,6 @@
 import { getMarketsData } from "./exchange";
 import { Market } from "ccxt";
+import { stringInArray } from "./util";
 
 export interface Ret {
   name: string;
@@ -24,16 +25,16 @@ export interface BookTicker {
 
 export default async function subscribe(
   params = ["!bookTicker"],
-  filter = ["USDT", "BUSD"]
+  filterFor = ["USDT", "BUSD"]
 ) {
   const marketsData: Record<string, Market> = <Record<string, Market>>(
     await getMarketsData()
   );
   const marketsIds: Record<string, string> = {};
-  const marketsIdsR: Record<string, unknown> = {};
+  const marketsIdsR: Record<string, string> = {};
 
   Object.keys(marketsData).forEach((pair: string) => {
-    // if (marketsData[pair].info.symbol.includes("DAI")) {
+    // if (stringInArray(marketsData[pair].info.symbol, filterFor)) {
     marketsIds[marketsData[pair].info.symbol] = pair;
     marketsIds[pair] = marketsData[pair].info.symbol;
     // }
